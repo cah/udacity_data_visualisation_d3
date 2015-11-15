@@ -22,19 +22,19 @@ This chart should provide the reader the ability to see the relationship between
 
 
 ###Feedback:
-Version One Feedback:
-1. Chart Needs Title
-2. Needs title cleanup on x
-3. Needs title cleanup on y
-4. Weight on x axis is too busy
-5. Consider moving legend 
+1. Version One Feedback
+  1. Chart Needs Title
+  2. Needs title cleanup on x
+  3. Needs title cleanup on y
+  4. Weight on x axis is too busy
+  5. Consider moving legend 
 
-Version Two Feedback:
-1. Legend needs title
-2. Would be helpful to filter on handedness
+2. Version Two Feedback
+  1. Legend needs title
+  2. Would be helpful to filter on handedness
 
-Version Two Feedback:
-1. No additional suggestions were received. Chart was clear. 
+3. Version Three Feedback
+  1. No additional suggestions were received. Chart was clear. 
 
 ###Resources:
 Data Visualisation and D3 course from Udacity (https://www.udacity.com)
