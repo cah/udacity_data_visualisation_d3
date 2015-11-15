@@ -1,0 +1,17 @@
+<html>
+<div id="chartContainer">
+  <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
+  <script type="text/javascript">
+    var svg = dimple.newSvg("#chartContainer", 590, 400);
+    d3.csv("data/baseball_data.csv", function (data) {
+      var myChart = new dimple.chart(svg, data);
+      myChart.setBounds(60, 30, 400, 330)
+      var x = myChart.addCategoryAxis("x", "weight");
+      myChart.addMeasureAxis("y", "HR");
+      myChart.addSeries("handedness", dimple.plot.bar);
+      myChart.addLegend(60, 10, 510, 20, "right");
+      myChart.draw();
+    });
+  </script>
+</div>

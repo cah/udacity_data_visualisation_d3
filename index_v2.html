@@ -1,0 +1,43 @@
+<html>
+<div id="chartContainer">
+  <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
+  <script type="text/javascript">
+    var svg = dimple.newSvg("#chartContainer", 590, 400);
+    d3.csv("data/baseball_data.csv", function (data) {
+
+      // Round Weight to nearest ten
+      data.forEach(function (d) {
+        d.weight = Math.round(d.weight/10)*10;
+      }, this);
+
+      var myChart = new dimple.chart(svg, data);
+      myChart.setBounds(60, 30, 400, 330)
+
+      // Add x,y,series data
+      var x = myChart.addCategoryAxis("x", "weight");
+      var y = myChart.addMeasureAxis("y", "HR");
+      myChart.addSeries("handedness", dimple.plot.bar);
+
+      // Add x,y titles
+      x.title = "Weight rounded to the nearest ten";
+      y.title = "Homeruns";
+
+      // Add Lengend
+      var myLegend = myChart.addLegend(500, 100, 60, 300, "Right");
+
+      myChart.draw();
+
+      // Add Title
+      svg.append("text")
+        .attr("x", 250)
+        .attr("y", 20)
+        .attr("text-anchor", "middle")
+        .style("font-size", "14px")
+        .style("text-decoration", "underline")
+        .text("Homeruns vs Weigth");
+
+
+    });
+  </script>
+</div>
