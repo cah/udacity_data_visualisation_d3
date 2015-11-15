@@ -37,8 +37,9 @@ This chart should provide the reader the ability to see the relationship between
   1. No additional suggestions were received. Chart was clear. 
 
 ###Resources:
-Data Visualisation and D3 course from Udacity (https://www.udacity.com)
-http://d3js.org
-http://dimplejs.org/examples_viewer.html?id=bars_vertical_stacked
-http://dimplejs.org/advanced_examples_viewer.html?id=advanced_interactive_legends
-http://dimplejs.org
+
+1. http://d3js.org
+2. http://dimplejs.org/examples_viewer.html?id=bars_vertical_stacked
+3. http://dimplejs.org/advanced_examples_viewer.html?id=advanced_interactive_legends
+4. http://dimplejs.org
+5. https://www.udacity.com
