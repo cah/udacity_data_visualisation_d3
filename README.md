@@ -9,12 +9,13 @@ https://www.google.com/url?q=https://s3.amazonaws.com/udacity-hosted-downloads/u
 
 
 #####Dataset columns:
-name      : Players Name 
-handedness: Left Handed, Right Handed, or Both (Switch Hitter)
-height    : Player Height 
-weight    : Player Weight 
-avg       : Batting Average 
-HR        : Number of Homeruns
+
+1. name      : Players Name 
+2. handedness: Left Handed, Right Handed, or Both (Switch Hitter)
+3. height    : Player Height 
+4. weight    : Player Weight 
+5. avg       : Batting Average 
+6. HR        : Number of Homeruns
 
 ###Design:
 
