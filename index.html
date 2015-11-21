@@ -1,100 +1,65 @@
 <html>
-<div id="chartContainer">
-  <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
-  <script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
-  <script type="text/javascript">
-    var svg = dimple.newSvg("#chartContainer", 590, 400);
+<body>
+<h1>Comparison of Baseball Player's Stats by Handedness</h1>
+<div style="width: 100%">
+        <div style="width: 45%; float: left; display: inline-block;">
+        <p>
+        These visualizations show left handed batter's have slightly higher batting average and higher homerun totals.   The <a href="/data/baseball_data.csv">data set</a> includes player stats for 1,157 baseball players including the columns:
+        </p>
+        <ul>
+          <li> name      : Players Name </li>
+          <li> handedness: Left Handed, Right Handed, or Both (Switch Hitter) </li>
+          <li> height    : Player Height </li>
+          <li> weight    : Player Weight </li>
+          <li> avg       : Batting Average </li>
+          <li> HR        : Number of Homeruns </li> 
+        </ul>
+        <p>Note: Players with a zero batting average have been excluded from the chart.<p>
+        </div>
+        <div id="chartContainer" style="width: 50%; display: inline-block;">
+        </div>
+</div>
+</body>
+<script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
+<script type="text/javascript">
+    var svg1 = dimple.newSvg("#chartContainer", 590, 300);
+    var svg2 = dimple.newSvg("#chartContainer", 590, 300);
     d3.csv("data/baseball_data.csv", function (data) {
 
-      // Round Weight to nearest ten
-      data.forEach(function (d) {
-        d.weight = Math.round(d.weight/10)*10;
-      }, this);
+      // Define the chart
+      var myChart1 = new dimple.chart(svg1, data);
+      myChart1.setBounds(80, 30, 480, 200);
 
-      var myChart = new dimple.chart(svg, data);
-      myChart.setBounds(60, 30, 400, 330)
+      // Add the Measures
+      var x1 = myChart1.addCategoryAxis("x", "handedness");
+      var y1 = myChart1.addMeasureAxis("y", "avg");
+      var mySeries = myChart1.addSeries("handedness", dimple.plot.bar);
+      mySeries.aggregate = dimple.aggregateMethod.avg;
 
-      // Add x,y,series data
-      var x = myChart.addCategoryAxis("x", "weight");
-      var y = myChart.addMeasureAxis("y", "HR");
-      myChart.addSeries("handedness", dimple.plot.bar);
+      // Add x,y titles and formatting
+      x1.title = "Player's Batting Handedness";
+      y1.title = "Batting Average";
+      y1.tickFormat = ".3f";
 
-      // Add x,y titles
-      x.title = "Weight rounded to the nearest ten";
+      myChart1.draw();
+
+      var myChart2 = new dimple.chart(svg2, data);
+      myChart2.setBounds(80, 30, 480, 200);
+
+      // Add the Measures
+      var x = myChart2.addCategoryAxis("x", "handedness");
+      var y = myChart2.addMeasureAxis("y", "HR");
+      var mySeries = myChart2.addSeries("handedness", dimple.plot.bar);
+      mySeries.aggregate = dimple.aggregateMethod.avg;
+
+      // Add x,y titles and formatting
+      x.title = "Player's Batting Handedness";
       y.title = "Homeruns";
 
-      // Add Lengend
-      var myLegend = myChart.addLegend(500, 100, 60, 300, "Right");
 
-      myChart.draw();
-
-      // Add Title
-      svg.append("text")
-        .attr("x", 250)
-        .attr("y", 20)
-        .attr("text-anchor", "middle")
-        .style("font-size", "14px")
-        .style("text-decoration", "underline")
-        .text("Homeruns vs Weight");
-
-
-      // Add Lengend Title
-      svg.selectAll("title_text")
-        .data(["Click legend to","show/hide", "handedness:"])
-        .enter()
-        .append("text")
-        .attr("x", 499)
-        .attr("y", function (d, i) { return 60 + i * 14; })
-        .style("font-family", "sans-serif")
-        .style("font-size", "10px")
-        .style("color", "Black")
-        .text(function (d) { return d; });
-
-      // This is a critical step.  By doing this we orphan the legend. This
-      // means it will not respond to graph updates.  Without this the legend
-      // will redraw when the chart refreshes removing the unchecked item and
-      // also dropping the events we define below.
-      myChart.legends = [];
-
-      // Get a unique list of Owner values to use when filtering
-      var filterValues = dimple.getUniqueValues(data, "handedness");
-
-      // Get all the rectangles from our now orphaned legend
-      myLegend.shapes.selectAll("rect")
-         
-      // Add a click event to each rectangle
-      .on("click", function (e) {
-         // This indicates whether the item is already visible or not
-         var hide = false;
-         var newFilters = [];
-
-         // If the filters contain the clicked shape hide it
-         filterValues.forEach(function (f) {
-           if (f === e.aggField.slice(-1)[0]) {
-             hide = true;
-           } else {
-             newFilters.push(f);
-           }
-         });
-
-         // Hide the shape or show it
-         if (hide) {
-           d3.select(this).style("opacity", 0.2);
-         } else {
-           newFilters.push(e.aggField.slice(-1)[0]);
-           d3.select(this).style("opacity", 0.8);
-         }
-
-         // Update the filters
-         filterValues = newFilters;
-         // Filter the data
-         myChart.data = dimple.filterData(data, "handedness", filterValues);
-         // Passing a duration parameter makes the chart animate. Without
-         // it there is no transition
-         myChart.draw(800);
-       });
-
+      myChart2.draw();
 
     });
-  </script>
-</div>
+</script>
+</html>

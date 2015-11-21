@@ -2,7 +2,8 @@
 ##Data Visualization and D3 Project
 
 ###Summary
-A data set containing 1,157 baseball players including their handedness (right or left handed), height (in inches), weight (in pounds), batting average, and home runs.
+
+A data set containing 1,157 baseball players including their handedness (right or left handed), height (in inches), weight (in pounds), batting average, and home runs. The visualizations should communicate the edge that left handed baseball players have in batting average and Homeruns.
 
 #####The dataset is available:
 https://www.google.com/url?q=https://s3.amazonaws.com/udacity-hosted-downloads/ud507/baseball_data.csv&sa=D&usg=AFQjCNEjepW24JPVyIpheLuF7wHlFJd2rg
@@ -19,8 +20,9 @@ https://www.google.com/url?q=https://s3.amazonaws.com/udacity-hosted-downloads/u
 
 ###Design:
 
-This chart should provide the reader the ability to see the relationship between homeruns, weight, and handedness. After reviewing the dimplejs API, I selected a stack barchart to encode the data. Next, I shared the visualization with several readers. Based on the readers feedback, several enhancements were indentified. Those enhancements are documented in the feedback section. 
-
+1. Remove Players with zero batting average and zero homeruns 
+2. Since handedness is categorically data, I selected a bar chart 
+3. Provided read two charts: batting average and homeruns by handedness
 
 ###Feedback:
 1. Version One Feedback
@@ -34,8 +36,18 @@ This chart should provide the reader the ability to see the relationship between
   1. Legend needs title
   2. Would be helpful to filter on handedness
 
-3. Version Three Feedback
-  1. No additional suggestions were received. Chart was clear. 
+3. Version Three Feedback (provided by Udicaty Coach)
+  It looks like this visualization is plotting the total home runs within each weight bin. The problem with plotting total home runs is that a bin with more players is probably going to have more total home runs. That really only tells me as chart reader that 190 weight bin has the most players in it. The chart also implies that there are mostly right handed players in the data set, then left handed players, and finally switch hitters. But that isn't a relationship between handedness, home runs, and weight; instead, it is indirectly showing the counts of players within each weight bin like a histogram. This makes the plot more exploratory rather than having a clear explanatory story.
+
+One possible solution is to find the average number of home runs within each weight bin. That would be the total home runs divided by the number of players within each bin. But, I can't guarantee that this will show an interesting correlation or relationship. It might not, so more exploratory data analysis will have to be done to find an explanatory story.
+
+Questions that might lead to an explanatory story:
+
+are home runs and batting average correlated?
+do right handed players tend to have better performance statistics than left handed players?
+do heavier and/or taller players score more home runs or have better batting averages? Or does BMI (http://extoxnet.orst.edu/faqs/dietcancer/web2/twohowto.html) correlate to batting player performance?
+One side note: this data set contains quite a few players with a batting average of 0. It's likely these were pitchers who had designated hitters https://en.wikipedia.org/wiki/Designated_hitter . It might be better to remove these points before doing analysis on baseball player performance.
+
 
 ###Resources:
 
