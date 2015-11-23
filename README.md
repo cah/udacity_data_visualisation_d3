@@ -20,9 +20,7 @@ https://www.google.com/url?q=https://s3.amazonaws.com/udacity-hosted-downloads/u
 
 ###Design:
 
-1. Remove Players with zero batting average and zero homeruns 
-2. Since handedness is categorically data, I selected a bar chart 
-3. Provided read two charts: batting average and homeruns by handedness
+After reviewing the data, I decided to provide the reader a comparision of handedness. Bar charts are one of the most common ways to visualize data because it provides the reader a quick comparision of highs and lows. Bar charts are especially effective comparing data with a small number of categories. Next, I filtered players with a zero batting average because those players were likely pitchers in the American League. Last, I provide the reader two charts: batting average and homeruns. 
 
 ###Feedback:
 #### Version One
